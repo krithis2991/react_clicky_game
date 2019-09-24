@@ -1,74 +1,88 @@
-import React from 'react';
-import FriendList from './components/FriendList/FriendList';
-import Header from './components/Header/Header';
-import Wrapper from './components/Wrapper/Wrapper';
-import friends from "./images.json";
+import React, { Component } from "react";
+import Card from "./components/Card";
+import Wrapper from "./components/Wrapper";
+import Header from "./components/Header";
+import images from "./images.json";
+import "./App.css";
 
+class App extends Component {
 
-
-class App extends React.Component {
   state = {
-    friends,
-    currentScore: 0,
-    highScore: 0
-  }
+    images,
+    userScore: 0,
+    win: true
+  };
 
+  changeImageArray = () => {
 
-  increaseScore = () => {
-    if (this.state.currentScore > this.state.highScore) {
-      this.setState({ highScore: this.state.currentScore }, function () {
-        console.log(this.state.highScore);
-      });
+    let j = 0
+    let tempVar = null
+    let tempArray = this.state.images;
+
+    for (let i = this.state.images.length - 1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1))
+      tempVar = tempArray[i]
+      tempArray[i] = tempArray[j]
+      tempArray[j] = tempVar
     }
+    this.setState({ images: tempArray }, () => console.log("hey", this.state.images))
 
-    this.state.friends.forEach(friend => {
-      friend.count = 0;
-    });
-
-    alert(`Game Over :( \nscore : {this.state.currentScore}`);
-    this.setState({ currentScore: 0 });
-    return true;
   }
 
-  friendCount = id => {
-    this.state.friends.find((o, i) => {
-      if (o.id === id) {
-        if (friends[i].count === 0) {
-          friends[i].count = friends[i].count + 1;
-          this.setState({ currentScore: this.state.currentScore + 1 }, function () {
-            console.log(this.state.currentScore);
-          });
-          this.state.friends.sort(() => Math.random() - 0.5)
-          return true;
-        } else {
-          this.increaseScore();
+  clickHandler = event => {
+    event.preventDefault();
+    const clickedID = parseInt(event.target.id);
+    const newImages = this.state.images.map(item => {
+      if (item.id === clickedID) {
+
+        if (item.clicked === true) {
+          alert("You looose");
+          this.setState({
+            won: false
+          })
+
+        }
+        else {
+          item.clicked = true;
+          const newScore = this.state.userScore + 1;
+          this.setState({
+            userScore: newScore
+          })
         }
       }
-    });
+      return item;
+    })
+    if (this.state.won === true) {
+      this.setState({
+        images: newImages
+      }, () => {
+        console.log(this.state.images)
+        this.changeImageArray()
+      })
+
+    } else {
+      const newGameArr = this.state.imageArr.map(item => item.clicked = false)
+      this.setState({
+        won: true,
+        userScore: 0,
+        images: newGameArr
+      }, () => this.shufflePictures())
+    }
+
   }
 
   render() {
     return (
       <Wrapper>
-        <Header currentScore={this.state.currentScore} highScore={this.score.highScore}> Clicky Game! </Header>
-        {this.state.friends.map(friend => (
-          <FriendList
-            friendCount={this.friendCount}
-            id={friend.id}
-            key={friend.id}
-            image={friend.image}
-          />
+        <Header score={this.state.score} highscore={this.state.highscore}>Clicky Game</Header>
+        {this.state.images.map(item => (
+          <Card
+            clickHandler={this.clickCount}
+            id={images.id}
+            key={images.id}
+            image={images.image} />
         ))}
       </Wrapper>
-      //       <p>Current Score: <span>{this.state.currentScore}</span></p>
-      //       <p>Your High Score: <span>{this.state.highScore}</span></p>
-      //     </div>
-      //   </div>
-      // </header>
-      //   <main>
-      //     <FriendList images={images} increaseScore={this.increaseScore} resetScore={this.resetScore} />
-      //   </main>
-      // </div>
     );
   }
 }
