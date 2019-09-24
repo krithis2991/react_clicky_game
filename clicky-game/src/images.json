@@ -1,0 +1,76 @@
+{
+    "images": [
+        {
+            "id": 1,
+            "imgName": "Dexter",
+            "imgFile": "dexter.jpg",
+            "count": 0
+        },
+        {
+            "id": 2,
+            "imgName": "Gary",
+            "imgFile": "gary.jpg",
+            "count": 0
+        },
+        {
+            "id": 3,
+            "imgName": "JellyFish",
+            "imgFile": "jellyfish.jpg",
+            "count": 0
+        },
+        {
+            "id": 4,
+            "imgName": "Mr.Krabs",
+            "imgFile": "krabs.jpg",
+            "count": 0
+        },
+        {
+            "id": 5,
+            "imgName": "Minion",
+            "imgFile": "minion.jpg",
+            "count": 0
+        },
+        {
+            "id": 6,
+            "imgName": "Patrick",
+            "imgFile": "patrick.jpg",
+            "count": 0
+        },
+        {
+            "id": 7,
+            "imgName": "Pickle",
+            "imgFile": "pickle.jpg",
+            "count": 0
+        },
+        {
+            "id": 8,
+            "imgName": "SandyCheeks",
+            "imgFile": "sandycheeks.jpg",
+            "count": 0
+        },
+        {
+            "id": 9,
+            "imgName": "Simpson",
+            "imgFile": "simpson.png",
+            "count": 0
+        },
+        {
+            "id": 10,
+            "imgName": "Spongebob",
+            "imgFile": "spongebob.png",
+            "count": 0
+        },
+        {
+            "id": 11,
+            "imgName": "Squidward",
+            "imgFile": "squidward.jpeg",
+            "count": 0
+        },
+        {
+            "id": 12,
+            "imgName": "Yeti",
+            "imgFile": "yeti.png",
+            "count": 0
+        }
+    ]
+}
